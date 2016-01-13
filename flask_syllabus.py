@@ -1,6 +1,7 @@
 """
 Very simple Flask web site, with one page
-displaying a course schedule.
+displaying a course schedule. The beginning date of each week 
+is displayed and, in addition, the current week is highlighted. 
 
 """
 
@@ -47,9 +48,18 @@ def index():
   if 'schedule' not in flask.session:
       app.logger.debug("Processing raw schedule file")
       raw = open('static/schedule.txt')
-      flask.session['schedule'] = pre.process(raw)
+      syllabus_list = pre.process(raw) #here you collect, week, date, project, and topic per week. List of dicts
+      for entry in syllabus_list:   
+        arrow_date_low = arrow.get(entry['date'], 'ddd MM/DD/YYYY')
+        arrow_date_high = arrow_date_low.replace(weeks=+1)
+        arrow_date_now = arrow.now()
+        if arrow_date_low <= arrow_date_now < arrow_date_high:
+            curr_week = entry['week']
+        
+      flask.session['cur_week'] = curr_week 
+      flask.session['schedule'] = syllabus_list  
 
-  return flask.render_template('syllabus.html')
+  return flask.render_template('syllabus.html') 
 
 
 @app.errorhandler(404)

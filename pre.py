@@ -31,7 +31,7 @@ def process(raw):
 
         if field == "begin":
             try:
-                base = arrow.get(content)
+                base = arrow.get(content, 'MM/DD/YYYY') 
             except:
                 raise ValueError("Unable to parse date {}".format(content))
 
@@ -42,6 +42,13 @@ def process(raw):
             entry['topic'] = ""
             entry['project'] = ""
             entry['week'] = content
+            if content == ' 1': #if it's week1
+                nice_base = base.format("ddd MM/DD/YYYY")
+                entry['date'] = nice_base
+            else:
+                base = base.replace(weeks=+1)
+                nice_base = base.format("ddd MM/DD/YYYY")
+                entry['date'] = nice_base
 
         elif field == 'topic' or field == 'project':
             entry[field] = content
