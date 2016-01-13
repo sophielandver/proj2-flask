@@ -10,10 +10,11 @@ from pathlib import Path  # For debugging
 # easy to vary just the part that changes from 
 # project to project.
 #
-ClassDir="~slandver/public_html/cis399/htbin"
+ClassDir="/home/users/slandver/public_html/cis399/htbin"
 ProjDir="{}/proj2-flask".format(ClassDir)
 EnvLib="{}/env/lib/python3.4/site-packages".format(ProjDir)
 
+# print("The path we're trying is {}".format(EnvLib))
 # A little self-check to make sure we got it right ... 
 p = Path(EnvLib)
 assert p.exists() and p.is_dir()
