@@ -1,5 +1,7 @@
 Author: Sophie Landver
 
+Path to project2 on ix: slandver@ix-trusty: ~/public_html/cis399/htbin/proj2-flask 
+
 URL: http://ix.cs.uoregon.edu/~slandver/cis399/htbin/proj2-flask/app.cgi/
 (I could not get this ix cgi URL to work). 
 
