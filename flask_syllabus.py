@@ -93,6 +93,8 @@ def format_arrow_date( date ):
 if __name__ == "__main__":
     # Standalone, with a dynamically generated
     # secret key, accessible outside only if debugging is not on
+    print("NOT GOING TO RUN")
+"""
     import uuid
     app.secret_key = str(uuid.uuid4())
     app.debug=CONFIG.DEBUG
@@ -109,4 +111,5 @@ else:
     # one instance for concurrent service. 
     app.secret_key = CONFIG.secret_key
     app.debug=False
+"""
 
